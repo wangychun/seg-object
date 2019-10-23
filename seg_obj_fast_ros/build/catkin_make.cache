@@ -1,0 +1,2 @@
+seg
+-DCATKIN_DEVEL_PREFIX=/home/sarah/program/mine/seg_obj_fast_ros/devel -DCMAKE_INSTALL_PREFIX=/home/sarah/program/mine/seg_obj_fast_ros/install -G Unix Makefiles
