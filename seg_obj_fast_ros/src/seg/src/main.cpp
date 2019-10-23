@@ -56,7 +56,9 @@ public:
 
 		sensor_msgs::PointCloud2 ros_cloud;
 		pcl::toROSMsg(*cloud_mark, ros_cloud);
-		ros_cloud.header.frame_id = "global_init_frame";
+//		ros_cloud.header.frame_id = "global_init_frame";
+
+		ros_cloud.header.frame_id = "velo_link";
 		pub_.publish(ros_cloud);
 
 
@@ -75,8 +77,11 @@ SubscribeAndPublish::SubscribeAndPublish(ros::NodeHandle nh,
 		std::string lidar_topic_name)
 {
 	//Topic you want to publish
+
 	pub_ = nh.advertise < sensor_msgs::PointCloud2 > ("/seg_obj", 10);
-	sub_ = n_.subscribe("lidar_cloud_calibrated", 10, &SubscribeAndPublish::callback, this);
+//	sub_ = n_.subscribe("lidar_cloud_calibrated", 10, &SubscribeAndPublish::callback, this);
+
+	sub_ = n_.subscribe("kitti/velo/pointcloud", 10, &SubscribeAndPublish::callback, this);
 }
 
 int main(int argc, char **argv)

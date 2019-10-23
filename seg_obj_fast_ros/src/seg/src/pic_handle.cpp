@@ -7,12 +7,11 @@
 #include "pic_handle.h"
 
 cv::Mat to_pic(array<array<Cell, numY>, numX> & Grid){
-	cv::Mat pic_origin = cv::Mat::zeros(300, 400, CV_8U);
-	cv::Mat image = cv::Mat::zeros(239, 211, CV_8U);
+	cv::Mat pic_origin = cv::Mat::zeros(200, 500, CV_8U);
 
 
-	for(int rows = 0; rows < 300; rows++)
-		for(int cols = 0; cols < 400; cols++)
+	for(int rows = 0; rows < 200; rows++)
+		for(int cols = 0; cols < 500; cols++)
 		{
 			if (Grid[rows][cols].mark == 1) pic_origin.at<uchar>(rows, cols) = 255;
 		}
@@ -28,7 +27,7 @@ cv::Mat pic_closed(array<array<Cell, numY>, numX> & Grid){
 	cv::Mat image_blur;
 
 //	std::cout << "blur_before"  << std::endl;
-	cv::medianBlur(image, image_blur ,3);  //中值滤波
+	cv::medianBlur(image, image_blur ,1);  //中值滤波
 
 	cv::Mat element3(3,3,CV_8U,cv::Scalar(1));
 	cv::Mat element5(5,5,CV_8U,cv::Scalar(1));
@@ -36,7 +35,7 @@ cv::Mat pic_closed(array<array<Cell, numY>, numX> & Grid){
 
 	cv::Mat image_closed;
 
-	cv::morphologyEx(image_blur, image_closed, cv::MORPH_CLOSE, element3);
+	cv::morphologyEx(image_blur, image_closed, cv::MORPH_CLOSE, element5);
 
 //	cv::imshow("pic",image_closed);
 //	cv::waitKey();
@@ -54,8 +53,8 @@ ImgBasic updatemark(array<array<Cell, numY>, numX> & Grid){
 	//包括背景的轮廓数
 	image_basic.num = num;
 
-	for(int rows = 0; rows < 300; rows++)
-			for(int cols = 0; cols < 400; cols++)
+	for(int rows = 0; rows < 200; rows++)
+			for(int cols = 0; cols < 500; cols++)
 			{
 					int label;
 					label = image_basic.labels.at<int>(rows, cols);
@@ -148,10 +147,10 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(array<array<Cell, numY>, 
 		others_id = classify_cloud(Grid , obj_basic, mark_to_checked);
 
 
-		pcl::PointCloud<pcl::PointXYZ>::Ptr ground_cloud(new pcl::PointCloud<pcl::PointXYZ>);
-		pcl::PointCloud<pcl::PointXYZRGB>::Ptr ground_cloud_rgb(new pcl::PointCloud<pcl::PointXYZRGB>);
-		ground_cloud = Ids_to_cloud(others_id, cloud);
-		ground_cloud_rgb = set_color_cloud(ground_cloud, "green");
+		pcl::PointCloud<pcl::PointXYZ>::Ptr others_cloud(new pcl::PointCloud<pcl::PointXYZ>);
+		pcl::PointCloud<pcl::PointXYZRGB>::Ptr others_cloud_rgb(new pcl::PointCloud<pcl::PointXYZRGB>);
+		others_cloud = Ids_to_cloud(others_id, cloud);
+		others_cloud_rgb = set_color_cloud(others_cloud, "yellow");
 
 
 
@@ -165,13 +164,13 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(array<array<Cell, numY>, 
 			pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_marked_color(new pcl::PointCloud<pcl::PointXYZRGB>);
 
 			cloud_marked = Ids_to_cloud( obj_basic[mark].obj_ids, cloud);
-			if(mark == 0) 	cloud_marked_color = set_color_cloud(cloud_marked, "white");
+			if(mark == 0) 	cloud_marked_color = set_color_cloud(cloud_marked, "blue");
 //			cloud_marked_color = set_color_cloud(cloud_marked, color[u(e)]);
 			else
 				cloud_marked_color = set_color_cloud(cloud_marked, "red");
 			*cloud_marked_joint += *cloud_marked_color;
 		}
-		*cloud_marked_joint += *ground_cloud_rgb;
+		*cloud_marked_joint += *others_cloud_rgb;
 //		cloud_marked_joint = Ids_to_cloud(all_id, cloud);
 //		save_mark_origin_cloud(cloud_marked_joint, "joint");
 		return cloud_marked_joint;

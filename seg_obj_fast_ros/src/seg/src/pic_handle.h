@@ -24,11 +24,11 @@
 #include <ratio>
 #include <chrono>
 
-//小轿车：5m*2.5m(0.2栅格：25*13= 300)
+//小轿车：5m*2.5m(0.2栅格：25*13= 325)
 //公交车：12m*2.5m(0.2栅格：60*13)
 //最多扫到0.8:  0.8*60*13 = 624
-const int area_grid_max_thre = 300;
-const int area_grid_min_thre = 5;
+const int area_grid_max_thre = 400;
+const int area_grid_min_thre = 4;
 //扫到车尾，也至少有2m，假设只有1m，也至少面积为5以上，此时设为6
 const int area_lw_max_thre = 600;
 

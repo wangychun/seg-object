@@ -14,14 +14,26 @@ extern int i;
 void createAndMapGrid(PointCloud<PointXYZ>:: Ptr &cloud,
                            array<array<Cell, numY>, numX>& GridData ){
 
+	int low =0, middle =0, high = 0;
     for (int i = 0; i < cloud->size(); i++) {
 
-    	cloud->points[i].x = cloud->points[i].x + 30;
-    	cloud->points[i].y = -cloud->points[i].y + 40;
+    	//针对kitti数据集的修改
+    	float x = -cloud->points[i].y + 20;
+    	float y = -cloud->points[i].x + 50;
+    	float z = cloud->points[i].z + 1.73;
+
+    	cloud->points[i].x = x;
+    	cloud->points[i].y = y;
+    	cloud->points[i].z = z;
+
+//看一下数据
+//    	if (cloud->points[i].z < -0.5) low++;
+//    	else  if (cloud->points[i].z > 0.5) high++;
+//    	else middle++;
 
         if( cloud->points[i].x < 0 || cloud->points[i].y < 0)  continue;
-        if( cloud->points[i].x > 60 || cloud->points[i].y > 80)  continue;
-        if(abs(cloud->points[i].x - 30) < 1.5 &&  ( - cloud->points[i].y + 40) < 4 && ( - cloud->points[i].y + 40 ) > -0.5 )  continue;
+        if( cloud->points[i].x > 40 || cloud->points[i].y > 100)  continue;
+//        if(poin )  continue;
         if(cloud->points[i].z > 2.5) continue;
 
         int x_id, y_id;
@@ -35,6 +47,9 @@ void createAndMapGrid(PointCloud<PointXYZ>:: Ptr &cloud,
         GridData[x_id][y_id].indexs.push_back(i);
     }
 
+//    std::cout << "low:" << low <<std::endl;
+//    std::cout << "middle:" << middle <<std::endl;
+//    std::cout << "high:" << high <<std::endl;
 }
 
 std::vector<int> classify_cloud(array<array<Cell, numY>, numX>& Grid ,
@@ -218,13 +233,17 @@ void getAllGrid(PointCloud<PointXYZ>::Ptr &cloud,
 			Grid[x_id][y_id].getheightdiff();
 			Grid[x_id][y_id].num = Grid[x_id][y_id].indexs.size();
 
-			if(Grid[x_id][y_id].num < Empty_thre) continue;
+			if(Grid[x_id][y_id].num < Empty_thre)
+			{
+//				Grid[x_id][y_id].mark = 1;
+				continue;
+			}
 
 //			cout<<Grid[x_id][y_id].heightdiff<<endl;
 
 			if (Grid[x_id][y_id].heightdiff >= 0 )
 			{
-				if(Grid[x_id][y_id].minZ < Ground_H && Grid[x_id][y_id].heightdiff < GroundThre)
+				if(Grid[x_id][y_id].maxZ < Ground_H && Grid[x_id][y_id].heightdiff < GroundThre)
 					{
 //					cout <<"someting right!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<x_id<<","<<y_id<<endl;
 					Grid[x_id][y_id].mark = 0;

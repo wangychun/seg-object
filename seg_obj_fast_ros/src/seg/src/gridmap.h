@@ -24,11 +24,11 @@ using namespace std;
 using namespace pcl;
 
 const double Resolution = 0.2;
-const int numX = 300;//分辨率0.2, 60*80
-const int numY = 400;
-const float GroundThre = 0.05;
+const int numX = 200;//分辨率0.2, 40*100
+const int numY = 500;
+const float GroundThre = 0.1;
 const int NumThre = 0;
-const float Ground_H = 1.0;
+const float Ground_H = 0.3;
 const int Empty_thre = 3; //点云数量小于3 认为是空
 //const float GroundZ;
 class ObjBasic{
