@@ -1,0 +1,3 @@
+/home/sarah/program/mine/seg_ground/build/CMakeFiles/edit_cache.dir
+/home/sarah/program/mine/seg_ground/build/CMakeFiles/rebuild_cache.dir
+/home/sarah/program/mine/seg_ground/build/CMakeFiles/seg_obj.dir

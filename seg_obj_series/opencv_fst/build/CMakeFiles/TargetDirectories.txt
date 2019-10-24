@@ -1,0 +1,3 @@
+/home/sarah/program/mine/opencv_fst/build/CMakeFiles/edit_cache.dir
+/home/sarah/program/mine/opencv_fst/build/CMakeFiles/rebuild_cache.dir
+/home/sarah/program/mine/opencv_fst/build/CMakeFiles/cv_ft.dir
