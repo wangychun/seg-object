@@ -48,23 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarah/program/mine/seg_obj_fast_ros/src
+CMAKE_SOURCE_DIR = /home/sarah/program/mine/fusion_ros/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarah/program/mine/seg_obj_fast_ros/build
+CMAKE_BINARY_DIR = /home/sarah/program/mine/fusion_ros/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target install
 install: preinstall
@@ -77,6 +67,17 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -100,17 +101,6 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -133,16 +123,26 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # The main all target
 all: cmake_check_build_system
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sarah/program/mine/seg_obj_fast_ros/build/CMakeFiles /home/sarah/program/mine/seg_obj_fast_ros/build/seg/CMakeFiles/progress.marks
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarah/program/mine/seg_obj_fast_ros/build/CMakeFiles 0
+	cd /home/sarah/program/mine/fusion_ros/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sarah/program/mine/fusion_ros/build/CMakeFiles /home/sarah/program/mine/fusion_ros/build/seg/CMakeFiles/progress.marks
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarah/program/mine/fusion_ros/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/clean
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/clean
 .PHONY : clean
 
 # The main clean target
@@ -152,22 +152,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/preinstall
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/preinstall
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sarah/program/mine/fusion_ros/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 seg/CMakeFiles/seg.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/seg.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/seg.dir/rule
 .PHONY : seg/CMakeFiles/seg.dir/rule
 
 # Convenience name for target.
@@ -177,12 +177,57 @@ seg: seg/CMakeFiles/seg.dir/rule
 
 # fast build rule for target.
 seg/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/build
 .PHONY : seg/fast
 
 # Convenience name for target.
+seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+.PHONY : seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_py: seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_py
+
+# fast build rule for target.
+geometry_msgs_generate_messages_py/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+.PHONY : geometry_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+.PHONY : seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_nodejs: seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+geometry_msgs_generate_messages_nodejs/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+.PHONY : geometry_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 seg/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_py.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_py.dir/rule
 .PHONY : seg/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # Convenience name for target.
@@ -192,12 +237,12 @@ roscpp_generate_messages_py: seg/CMakeFiles/roscpp_generate_messages_py.dir/rule
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_py.dir/build.make seg/CMakeFiles/roscpp_generate_messages_py.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_py.dir/build.make seg/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 # Convenience name for target.
 seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 .PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -207,12 +252,12 @@ rosgraph_msgs_generate_messages_eus: seg/CMakeFiles/rosgraph_msgs_generate_messa
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 seg/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_eus.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 .PHONY : seg/CMakeFiles/roscpp_generate_messages_eus.dir/rule
 
 # Convenience name for target.
@@ -222,12 +267,12 @@ roscpp_generate_messages_eus: seg/CMakeFiles/roscpp_generate_messages_eus.dir/ru
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_eus.dir/build.make seg/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_eus.dir/build.make seg/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 # Convenience name for target.
 seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 .PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
@@ -237,12 +282,27 @@ rosgraph_msgs_generate_messages_nodejs: seg/CMakeFiles/rosgraph_msgs_generate_me
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
+seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+.PHONY : seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_eus: seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_eus
+
+# fast build rule for target.
+geometry_msgs_generate_messages_eus/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+.PHONY : geometry_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
 seg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 .PHONY : seg/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -252,12 +312,12 @@ roscpp_generate_messages_cpp: seg/CMakeFiles/roscpp_generate_messages_cpp.dir/ru
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make seg/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make seg/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 # Convenience name for target.
 seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 .PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -267,12 +327,12 @@ rosgraph_msgs_generate_messages_cpp: seg/CMakeFiles/rosgraph_msgs_generate_messa
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 .PHONY : seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
@@ -282,132 +342,42 @@ std_msgs_generate_messages_cpp: seg/CMakeFiles/std_msgs_generate_messages_cpp.di
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_nodejs: seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+sensor_msgs_generate_messages_nodejs: seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : std_msgs_generate_messages_nodejs
+.PHONY : sensor_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
+.PHONY : seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+geometry_msgs_generate_messages_cpp: seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : rosgraph_msgs_generate_messages_lisp
+.PHONY : geometry_msgs_generate_messages_cpp
 
 # fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make seg/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_eus: seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-
-.PHONY : std_msgs_generate_messages_eus
-
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_lisp: seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : std_msgs_generate_messages_lisp
-
-# fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+geometry_msgs_generate_messages_cpp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+.PHONY : geometry_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 seg/CMakeFiles/_catkin_empty_exported_target.dir/rule:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/_catkin_empty_exported_target.dir/rule
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/_catkin_empty_exported_target.dir/rule
 .PHONY : seg/CMakeFiles/_catkin_empty_exported_target.dir/rule
 
 # Convenience name for target.
@@ -417,8 +387,188 @@ _catkin_empty_exported_target: seg/CMakeFiles/_catkin_empty_exported_target.dir/
 
 # fast build rule for target.
 _catkin_empty_exported_target/fast:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/_catkin_empty_exported_target.dir/build.make seg/CMakeFiles/_catkin_empty_exported_target.dir/build
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/_catkin_empty_exported_target.dir/build.make seg/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
+
+# Convenience name for target.
+seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_nodejs: seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : std_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+std_msgs_generate_messages_nodejs/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+.PHONY : std_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+.PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_lisp: seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_lisp
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_lisp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+.PHONY : rosgraph_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+.PHONY : seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_nodejs: seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
+
+.PHONY : roscpp_generate_messages_nodejs
+
+# fast build rule for target.
+roscpp_generate_messages_nodejs/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make seg/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+.PHONY : roscpp_generate_messages_nodejs/fast
+
+# Convenience name for target.
+seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+.PHONY : seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+rosgraph_msgs_generate_messages_py: seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
+
+.PHONY : rosgraph_msgs_generate_messages_py
+
+# fast build rule for target.
+rosgraph_msgs_generate_messages_py/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+.PHONY : rosgraph_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+.PHONY : seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_py: seg/CMakeFiles/std_msgs_generate_messages_py.dir/rule
+
+.PHONY : std_msgs_generate_messages_py
+
+# fast build rule for target.
+std_msgs_generate_messages_py/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_py.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_py.dir/build
+.PHONY : std_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+.PHONY : seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_lisp: seg/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
+
+.PHONY : roscpp_generate_messages_lisp
+
+# fast build rule for target.
+roscpp_generate_messages_lisp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make seg/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+.PHONY : roscpp_generate_messages_lisp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_eus: seg/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+
+.PHONY : std_msgs_generate_messages_eus
+
+# fast build rule for target.
+std_msgs_generate_messages_eus/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+.PHONY : std_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+.PHONY : seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+geometry_msgs_generate_messages_lisp: seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : geometry_msgs_generate_messages_lisp
+
+# fast build rule for target.
+geometry_msgs_generate_messages_lisp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+.PHONY : geometry_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+.PHONY : seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+std_msgs_generate_messages_lisp: seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : std_msgs_generate_messages_lisp
+
+# fast build rule for target.
+std_msgs_generate_messages_lisp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make seg/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+.PHONY : std_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make seg/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f CMakeFiles/Makefile2 seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make seg/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
 
 src/gridmap.o: src/gridmap.cpp.o
 
@@ -426,7 +576,7 @@ src/gridmap.o: src/gridmap.cpp.o
 
 # target to build an object file
 src/gridmap.cpp.o:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.o
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.o
 .PHONY : src/gridmap.cpp.o
 
 src/gridmap.i: src/gridmap.cpp.i
@@ -435,7 +585,7 @@ src/gridmap.i: src/gridmap.cpp.i
 
 # target to preprocess a source file
 src/gridmap.cpp.i:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.i
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.i
 .PHONY : src/gridmap.cpp.i
 
 src/gridmap.s: src/gridmap.cpp.s
@@ -444,7 +594,7 @@ src/gridmap.s: src/gridmap.cpp.s
 
 # target to generate assembly for a file
 src/gridmap.cpp.s:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.s
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.s
 .PHONY : src/gridmap.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -453,7 +603,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.o
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -462,7 +612,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.i
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -471,7 +621,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.s
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/pic_handle.o: src/pic_handle.cpp.o
@@ -480,7 +630,7 @@ src/pic_handle.o: src/pic_handle.cpp.o
 
 # target to build an object file
 src/pic_handle.cpp.o:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.o
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.o
 .PHONY : src/pic_handle.cpp.o
 
 src/pic_handle.i: src/pic_handle.cpp.i
@@ -489,7 +639,7 @@ src/pic_handle.i: src/pic_handle.cpp.i
 
 # target to preprocess a source file
 src/pic_handle.cpp.i:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.i
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.i
 .PHONY : src/pic_handle.cpp.i
 
 src/pic_handle.s: src/pic_handle.cpp.s
@@ -498,7 +648,7 @@ src/pic_handle.s: src/pic_handle.cpp.s
 
 # target to generate assembly for a file
 src/pic_handle.cpp.s:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.s
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/pic_handle.cpp.s
 .PHONY : src/pic_handle.cpp.s
 
 # Help Target
@@ -507,19 +657,28 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
 	@echo "... install"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... install/strip"
 	@echo "... seg"
+	@echo "... geometry_msgs_generate_messages_py"
+	@echo "... geometry_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... edit_cache"
 	@echo "... roscpp_generate_messages_eus"
-	@echo "... test"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
-	@echo "... rebuild_cache"
+	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_cpp"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... geometry_msgs_generate_messages_cpp"
+	@echo "... install/local"
+	@echo "... _catkin_empty_exported_target"
+	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_nodejs"
@@ -527,10 +686,11 @@ help:
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
+	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... install/strip"
-	@echo "... _catkin_empty_exported_target"
-	@echo "... install/local"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... list_install_components"
+	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... src/gridmap.o"
 	@echo "... src/gridmap.i"
 	@echo "... src/gridmap.s"
@@ -551,6 +711,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sarah/program/mine/fusion_ros/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

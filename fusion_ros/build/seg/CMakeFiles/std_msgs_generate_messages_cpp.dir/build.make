@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarah/program/mine/seg_obj_fast_ros/src
+CMAKE_SOURCE_DIR = /home/sarah/program/mine/fusion_ros/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarah/program/mine/seg_obj_fast_ros/build
+CMAKE_BINARY_DIR = /home/sarah/program/mine/fusion_ros/build
 
 # Utility rule file for std_msgs_generate_messages_cpp.
 
@@ -63,10 +63,10 @@ seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build: std_msgs_generate_messa
 .PHONY : seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 
 seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build/seg && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /home/sarah/program/mine/fusion_ros/build/seg && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/clean
 
 seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend:
-	cd /home/sarah/program/mine/seg_obj_fast_ros/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sarah/program/mine/seg_obj_fast_ros/src /home/sarah/program/mine/seg_obj_fast_ros/src/seg /home/sarah/program/mine/seg_obj_fast_ros/build /home/sarah/program/mine/seg_obj_fast_ros/build/seg /home/sarah/program/mine/seg_obj_fast_ros/build/seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sarah/program/mine/fusion_ros/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sarah/program/mine/fusion_ros/src /home/sarah/program/mine/fusion_ros/src/seg /home/sarah/program/mine/fusion_ros/build /home/sarah/program/mine/fusion_ros/build/seg /home/sarah/program/mine/fusion_ros/build/seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : seg/CMakeFiles/std_msgs_generate_messages_cpp.dir/depend
 

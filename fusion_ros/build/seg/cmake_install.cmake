@@ -1,8 +1,8 @@
-# Install script for directory: /home/sarah/program/mine/seg_obj_fast_ros/src/seg
+# Install script for directory: /home/sarah/program/mine/fusion_ros/src/seg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/sarah/program/mine/seg_obj_fast_ros/install")
+  set(CMAKE_INSTALL_PREFIX "/home/sarah/program/mine/fusion_ros/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sarah/program/mine/seg_obj_fast_ros/build/seg/catkin_generated/installspace/seg.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/sarah/program/mine/fusion_ros/build/seg/catkin_generated/installspace/seg.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/seg/cmake" TYPE FILE FILES
-    "/home/sarah/program/mine/seg_obj_fast_ros/build/seg/catkin_generated/installspace/segConfig.cmake"
-    "/home/sarah/program/mine/seg_obj_fast_ros/build/seg/catkin_generated/installspace/segConfig-version.cmake"
+    "/home/sarah/program/mine/fusion_ros/build/seg/catkin_generated/installspace/segConfig.cmake"
+    "/home/sarah/program/mine/fusion_ros/build/seg/catkin_generated/installspace/segConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/seg" TYPE FILE FILES "/home/sarah/program/mine/seg_obj_fast_ros/src/seg/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/seg" TYPE FILE FILES "/home/sarah/program/mine/fusion_ros/src/seg/package.xml")
 endif()
 

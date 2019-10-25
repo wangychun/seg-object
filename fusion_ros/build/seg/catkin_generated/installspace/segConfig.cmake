@@ -67,14 +67,14 @@ set(seg_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(seg_SOURCE_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/src/seg)
-  set(seg_DEVEL_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/devel)
+  set(seg_SOURCE_PREFIX /home/sarah/program/mine/fusion_ros/src/seg)
+  set(seg_DEVEL_PREFIX /home/sarah/program/mine/fusion_ros/devel)
   set(seg_INSTALL_PREFIX "")
   set(seg_PREFIX ${seg_DEVEL_PREFIX})
 else()
   set(seg_SOURCE_PREFIX "")
   set(seg_DEVEL_PREFIX "")
-  set(seg_INSTALL_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/install)
+  set(seg_INSTALL_PREFIX /home/sarah/program/mine/fusion_ros/install)
   set(seg_PREFIX ${seg_INSTALL_PREFIX})
 endif()
 
@@ -110,7 +110,7 @@ if(NOT "include;/usr/include/eigen3;/usr/include/pcl-1.7;/usr/include;/usr/inclu
         message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/sarah/program/mine/seg_obj_fast_ros/install/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/sarah/program/mine/fusion_ros/install/${idir}'.  ${_report}")
     endif()
     _list_append_unique(seg_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/sarah/program/mine/seg_obj_fast_ros/install/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/sarah/program/mine/fusion_ros/install/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

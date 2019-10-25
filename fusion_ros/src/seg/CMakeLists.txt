@@ -14,7 +14,12 @@ SET(CMAKE_MODULE_PATH
 
 
 find_package(catkin REQUIRED)
-find_package(catkin REQUIRED COMPONENTS roscpp)                                                           
+find_package(catkin REQUIRED COMPONENTS 
+	roscpp 
+	cv_bridge 
+	std_msgs 
+	image_transport
+)                                                           
 find_package(PCL 1.4 REQUIRED)  
 find_package(OpenCV REQUIRED)
 

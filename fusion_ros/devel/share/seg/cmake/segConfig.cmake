@@ -67,14 +67,14 @@ set(seg_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(seg_SOURCE_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/src/seg)
-  set(seg_DEVEL_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/devel)
+  set(seg_SOURCE_PREFIX /home/sarah/program/mine/fusion_ros/src/seg)
+  set(seg_DEVEL_PREFIX /home/sarah/program/mine/fusion_ros/devel)
   set(seg_INSTALL_PREFIX "")
   set(seg_PREFIX ${seg_DEVEL_PREFIX})
 else()
   set(seg_SOURCE_PREFIX "")
   set(seg_DEVEL_PREFIX "")
-  set(seg_INSTALL_PREFIX /home/sarah/program/mine/seg_obj_fast_ros/install)
+  set(seg_INSTALL_PREFIX /home/sarah/program/mine/fusion_ros/install)
   set(seg_PREFIX ${seg_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(seg_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/sarah/program/mine/seg_obj_fast_ros/src/seg/src;/usr/include/eigen3;/usr/include/pcl-1.7;/usr/include;/usr/include/ni;/usr/include/vtk-6.2;/usr/include/freetype2;/usr/include/x86_64-linux-gnu/freetype2;/usr/include/x86_64-linux-gnu;/usr/include/hdf5/openmpi;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include;/usr/lib/openmpi/include;/usr/lib/openmpi/include/openmpi;/usr/include/jsoncpp;/usr/include/python2.7;/usr/include/libxml2;/usr/include/tcl;/opt/ros/kinetic/include/opencv-3.3.1-dev;/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv " STREQUAL " ")
+if(NOT "/home/sarah/program/mine/fusion_ros/src/seg/src;/usr/include/eigen3;/usr/include/pcl-1.7;/usr/include;/usr/include/ni;/usr/include/vtk-6.2;/usr/include/freetype2;/usr/include/x86_64-linux-gnu/freetype2;/usr/include/x86_64-linux-gnu;/usr/include/hdf5/openmpi;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include;/usr/lib/openmpi/include;/usr/lib/openmpi/include/openmpi;/usr/include/jsoncpp;/usr/include/python2.7;/usr/include/libxml2;/usr/include/tcl;/opt/ros/kinetic/include/opencv-3.3.1-dev;/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv " STREQUAL " ")
   set(seg_INCLUDE_DIRS "")
-  set(_include_dirs "/home/sarah/program/mine/seg_obj_fast_ros/src/seg/src;/usr/include/eigen3;/usr/include/pcl-1.7;/usr/include;/usr/include/ni;/usr/include/vtk-6.2;/usr/include/freetype2;/usr/include/x86_64-linux-gnu/freetype2;/usr/include/x86_64-linux-gnu;/usr/include/hdf5/openmpi;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include;/usr/lib/openmpi/include;/usr/lib/openmpi/include/openmpi;/usr/include/jsoncpp;/usr/include/python2.7;/usr/include/libxml2;/usr/include/tcl;/opt/ros/kinetic/include/opencv-3.3.1-dev;/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv")
+  set(_include_dirs "/home/sarah/program/mine/fusion_ros/src/seg/src;/usr/include/eigen3;/usr/include/pcl-1.7;/usr/include;/usr/include/ni;/usr/include/vtk-6.2;/usr/include/freetype2;/usr/include/x86_64-linux-gnu/freetype2;/usr/include/x86_64-linux-gnu;/usr/include/hdf5/openmpi;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent;/usr/lib/openmpi/include/openmpi/opal/mca/event/libevent2021/libevent/include;/usr/lib/openmpi/include;/usr/lib/openmpi/include/openmpi;/usr/include/jsoncpp;/usr/include/python2.7;/usr/include/libxml2;/usr/include/tcl;/opt/ros/kinetic/include/opencv-3.3.1-dev;/opt/ros/kinetic/include/opencv-3.3.1-dev/opencv")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/sarah/program/mine/seg_obj_fast_ros/src/seg/src;/usr/include/eigen
         message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/sarah/program/mine/seg_obj_fast_ros/src/seg/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'seg' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/sarah/program/mine/fusion_ros/src/seg/${idir}'.  ${_report}")
     endif()
     _list_append_unique(seg_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/sarah/program/mine/seg_obj_fast_ros/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/sarah/program/mine/fusion_ros/devel/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
