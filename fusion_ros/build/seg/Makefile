@@ -597,6 +597,33 @@ src/gridmap.cpp.s:
 	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/gridmap.cpp.s
 .PHONY : src/gridmap.cpp.s
 
+src/image_show.o: src/image_show.cpp.o
+
+.PHONY : src/image_show.o
+
+# target to build an object file
+src/image_show.cpp.o:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/image_show.cpp.o
+.PHONY : src/image_show.cpp.o
+
+src/image_show.i: src/image_show.cpp.i
+
+.PHONY : src/image_show.i
+
+# target to preprocess a source file
+src/image_show.cpp.i:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/image_show.cpp.i
+.PHONY : src/image_show.cpp.i
+
+src/image_show.s: src/image_show.cpp.s
+
+.PHONY : src/image_show.s
+
+# target to generate assembly for a file
+src/image_show.cpp.s:
+	cd /home/sarah/program/mine/fusion_ros/build && $(MAKE) -f seg/CMakeFiles/seg.dir/build.make seg/CMakeFiles/seg.dir/src/image_show.cpp.s
+.PHONY : src/image_show.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -694,6 +721,9 @@ help:
 	@echo "... src/gridmap.o"
 	@echo "... src/gridmap.i"
 	@echo "... src/gridmap.s"
+	@echo "... src/image_show.o"
+	@echo "... src/image_show.i"
+	@echo "... src/image_show.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

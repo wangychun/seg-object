@@ -5,6 +5,7 @@
  *      Author: sarah
  */
 #include "pic_handle.h"
+#include "image_show.h"
 
 cv::Mat to_pic(array<array<Cell, numY>, numX> & Grid){
 	cv::Mat pic_origin = cv::Mat::zeros(200, 500, CV_8U);
@@ -82,7 +83,10 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr to_origin_coordinate(pcl::PointCloud<pcl::Po
 }
 
 
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(array<array<Cell, numY>, numX> & Grid, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(array<array<Cell, numY>, numX> & Grid,
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+		cv::Mat image_raw)
+{
 
 		ImgBasic img;
 		img = updatemark(Grid);
@@ -176,24 +180,61 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(array<array<Cell, numY>, 
 
 
 		pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_marked_joint(new pcl::PointCloud<pcl::PointXYZRGB>);
+		pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_red(new pcl::PointCloud<pcl::PointXYZRGB>);
+		pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_blue(new pcl::PointCloud<pcl::PointXYZRGB>);
+		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_attention(new pcl::PointCloud<pcl::PointXYZ>);
+
 
 //		pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_mark(new pcl::PointCloud<pcl::PointXYZ>);
 		for(int mark = 0; mark < obj_basic.size() ; mark++)
 		{
-//			pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_marked(new pcl::PointCloud<pcl::PointXYZ>);
 			pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_marked(new pcl::PointCloud<pcl::PointXYZ>);
 			pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_marked_color(new pcl::PointCloud<pcl::PointXYZRGB>);
 
+
 			cloud_marked = Ids_to_cloud( obj_basic[mark].obj_ids, origin_cloud);
-			if(mark == 0) 	cloud_marked_color = set_color_cloud(cloud_marked, "blue");
+			if(mark == 0) 	cloud_blue = set_color_cloud(cloud_marked, "blue");
 //			cloud_marked_color = set_color_cloud(cloud_marked, color[u(e)]);
+
 			else
+				{
 				cloud_marked_color = set_color_cloud(cloud_marked, "red");
-			*cloud_marked_joint += *cloud_marked_color;
+				*cloud_attention += *cloud_marked;
+				}
+			*cloud_red += *cloud_marked_color;
 		}
-		*cloud_marked_joint += *others_cloud_rgb;
-//		cloud_marked_joint = Ids_to_cloud(all_id, cloud);
-//		save_mark_origin_cloud(cloud_marked_joint, "joint");
+
+//////////////////////////////////////////////////////////////////////
+		*cloud_marked_joint = *others_cloud_rgb + *cloud_red;
+				*cloud_marked_joint +=	*cloud_blue;
+		cv::Mat img_new;
+		//在图像上画图
+
+				sensors_fusion::ProjectionSingleton* projection_tools_;
+				projection_tools_ = sensors_fusion::ProjectionSingleton::getInstance();
+				projection_tools_->init();
+				Eigen::Matrix4f transform_kitti;
+//				transform_kitti<<1.0, 0.0, 0.0, 0.0,
+//									0.0,1.0, 0.0, 0.0,
+//									0.0, 0.0, 1.0, -1.73,
+//									0.0, 0.0, 0.0, 1.0;
+				transform_kitti<<1.0, 0.0, 0.0, 0.0,
+									0.0,1.0, 0.0, 0.0,
+									0.0, 0.0, 1.0, 0,
+									0.0, 0.0, 0.0, 1.0;
+
+				Eigen::MatrixXf transform_matrix(3,4);
+				transform_matrix = projection_tools_->getTransformMatrix() * transform_kitti;
+				projection_tools_->setTransformMatrix(transform_matrix);
+				img_new = sensors_fusion::ProjectCloud2Image(*cloud_attention,image_raw,projection_tools_->getTransformMatrix());
+//				img_new = sensors_fusion::ProjectCloud2Image(cloud_red, image_raw, projection_tools_->getTransformMatrix());
+				cv::imshow("view", img_new);
+				cv::waitKey(1);//用于图片的更新
+
+
+			//是存文件的
+////		cloud_marked_joint = Ids_to_cloud(all_id, cloud);
+////		save_mark_origin_cloud(cloud_marked_joint, "joint");
 		return cloud_marked_joint;
 
 

@@ -48,14 +48,15 @@ public:
 		      ROS_ERROR("cv_bridge exception: %s", e.what());
 		      return;
 		    }
-		    cv::imshow("view", cv_ptr->image);
-//		    cv::imshow(OPENCV_WINDOW, cv_ptr->image);
-		    cv::waitKey(1);//用于图片的更新
+
+		    cv::Mat image_raw = cv_ptr->image;
+//		    cv::imshow("view", cv_ptr->image);
+//		    cv::waitKey(1);//用于图片的更新
 
 		std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
 		getAllGrid(cloud, Grid);
-		cloud_mark = classfiyAndSave(Grid, cloud);
+		cloud_mark = classfiyAndSave(Grid, cloud, image_raw);
 //
 //		std::cout<<cloud_mark->size()<<std::endl;
 		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();

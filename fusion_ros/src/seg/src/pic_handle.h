@@ -55,6 +55,6 @@ cv::Mat to_pic(std::array<std::array<Cell, numY>, numX> & Grid);
 cv::Mat pic_closed(std::array<std::array<Cell, numY>, numX> & Grid);
 
 ImgBasic updatemark(std::array<std::array<Cell, numY>, numX> & Grid);
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(std::array<std::array<Cell, numY>, numX> & Grid, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr classfiyAndSave(std::array<std::array<Cell, numY>, numX> & Grid, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,cv::Mat image_raw);
 
 #endif /* SRC_PIC_HANDLE_H_ */

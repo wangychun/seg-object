@@ -41,6 +41,8 @@ add_executable(seg src/main.cpp
 		   src/gridmap.h
 		   src/gridmap.cpp
                    src/pic_handle.cpp
+		   src/image_show.cpp
+		   src/image_show.h
  #                  src/get_data.h
  #                 src/get_data.cpp
 			)

@@ -26,9 +26,9 @@ using namespace pcl;
 const double Resolution = 0.2;
 const int numX = 200;//分辨率0.2, 40*100
 const int numY = 500;
-const float GroundThre = 0.1;
+const float GroundThre = 0.15;
 const int NumThre = 0;
-const float Ground_H = 0.3;
+const float Ground_H = 0.5;
 const int Empty_thre = 3; //点云数量小于3 认为是空
 //const float GroundZ;
 class ObjBasic{
