@@ -1,0 +1,17 @@
+/home/sarah/program/deep_sort_cpp/install/lib/libdeep_sort_track.so: undefined reference to `google::LogMessage::LogMessage(char const*, int, int)'
+/home/sarah/program/deep_sort_cpp/install/lib/libdeep_sort_track.so: undefined reference to `google::LogMessage::~LogMessage()'
+/home/sarah/program/deep_sort_cpp/install/lib/libdeep_sort_track.so: undefined reference to `google::LogMessage::stream()'
+collect2: error: ld returned 1 exit status
+image_process/CMakeFiles/image_process.dir/build.make:591: recipe for target '/home/sarah/program/mine/image_process/devel/lib/image_process/image_process' failed
+make[2]: *** [/home/sarah/program/mine/image_process/devel/lib/image_process/image_process] Error 1
+CMakeFiles/Makefile2:2058: recipe for target 'image_process/CMakeFiles/image_process.dir/all' failed
+make[1]: *** [image_process/CMakeFiles/image_process.dir/all] Error 2
+Makefile:138: recipe for target 'all' failed
+make: *** [all] Error 2
+Invoking "make -j8 -l8" failed
+
+
+target_link_libraries(zzz ${xxx}  glog)
+在target_link_libraries中添加glog
+
+另外注意在CMakeLists时，注意中间的空格！！！  ${}和 ${}等之间要空格！！！！ 

@@ -1,0 +1,2 @@
+darknet_ros_msgs:image_process
+-DCATKIN_DEVEL_PREFIX=/home/sarah/program/mine/image_process/devel -DCMAKE_INSTALL_PREFIX=/home/sarah/program/mine/image_process/install -G Unix Makefiles
